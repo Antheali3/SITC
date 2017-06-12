@@ -1,0 +1,103 @@
+\section*{Exercises}
+
+\begin{enumerate}[font=\bfseries]
+
+    \item The following are the state diagrams of two \dfa s, $M_1$ and $M_2$ . Answer the following questions about each of these machines.
+    
+    \begin{enumerate}[font=\bfseries,label=\alph*.]
+        \item What is the start state?
+        \item What is the set of accept states?
+        \item What sequence of states does the machine go through on input {\tt aabb}?
+        \item Does the machine accept the string {\tt aabb}?
+        \item Does the machine accept the string \emptystring?
+    \end{enumerate}
+    
+    \item Give the formal description of the machines $M_1$ and $M_2$ pictured in Exercise 1.1.
+    
+    \item[2.4]
+    \begin{enumerate}[font=\bfseries]
+        \item[c.]
+        \item[e.]
+    \end{enumerate}
+    
+    \item[2.6]
+    \begin{enumerate}[font=\bfseries]
+        \item[b.]
+        \item[d.]
+    \end{enumerate}
+
+\end{enumerate}
+
+\section*{Problems}
+
+\begin{enumerate}
+
+    \item[{\bf 1.29b}]
+    
+    Assume that $A_2=\{www|w\in\{\texttt{a},\texttt{b}\}^\ast\}$ is regular. Let $p$ be the pumping length given by the pumping lemma. Choose $s$ to be the string $\texttt{a}^p\texttt{ba}^p\texttt{ba}^p\texttt{b}$. Because $s$ is a member of $A_2$ and $s$ is longer than $p$, the pumping lemma guarantees that $s$ can be split into three pieces, $s=xyz$, satisfying the three conditions of the pumping lemma. According to condition 3, $y$ must consists only of {\tt a}s. Hence $xyyz$ is not a member of $A_2$, a contradiction. Therefore $A_2$ is not regular.
+    
+    \item[{\bf 1.30}]
+    
+    The proof is wrong because we cannot conclude a contradiction from Example 1.73. Re-consider cases.
+    
+    \begin{enumerate}
+    \item The string $y$ consists only of {\tt 0}s. In this case, the string $xyyz$ is a member of $B$. This case is not a contradiction.
+    \item The string $y$ consists only of {\tt 1}s. This case is also not a contradiction.
+    \end{enumerate}
+    
+    None of them are contradiction, where error lies.
+    
+    \item[{\bf 1.46d}]
+    
+    We will use a proof by contradiction. Assume that $L$ is a regular language. Then by the pumping lemma, there exists a pumping length $p$ for $L$ such that for any string $s\in L$ where $|s|\ge p$, $s=xyz$ subject to the following conditions:
+    
+    \begin{enumerate}
+    \item[1.] $|y| > 0$,
+    \item[2.] $|xy|\le p$, and
+    \item[3.] for all $i>0,xy^iz\in L$.
+    \end{enumerate}
+    
+    Choose $s={\tt 0}^p{\tt 110}^p{\tt 1}$. Clearly $s\in L$ with $w={\tt 0}^p{\tt 1}$ and $t={\tt 1}$, and $|s|\ge p$. By the second condition of pumping lemma, it is obvious that $xy$ consists only of zeros, and further, by first condition and second condition, it follows that $y = 0^k$ for some $k > 0$. By the third condition, we can take any $i$ and $xy^iz$ will be in $L$. Taking $i = 2$, then $xyyz\in L$. $xyyz = xyyz = {\tt 0}^{(p+k)}{\tt 110}^p{\tt 1}$. There is no way that this string can be divided into $wtw$ as required to be in $L$, thus $xyyz\notin L$, a contradiction. Therefore $L$ is not a regular language.
+    
+    \item[{\bf 1.53}]
+    
+    Assume that $ADD$ is regular. Let $p$ be the pumping length given by the pumping lemma. Choose $s$ to be the string ${\tt 1}^p${\tt =}${\tt 1}^{p-1}${\tt 0+1}. Because $s$ is a member of $ADD$ and $s$ is longer than $p$, the pumping lemma guarantees that $s$ can be split into three pieces, $s=xyz$, satisfying the three conditions of the pumping lemma. Thus $y$ must consists of only {\tt 1}s. Let $y={\tt 1}^k$ where $0<k\le p$. Since $xyyz={\tt 1}^{p+k}${\tt =}${\tt 1}^{p-1}${\tt 0+1}$\notin ADD$, a contradiction. Therefore $ADD$ is not regular.
+    
+    \item[{\bf 1.54}]
+    \begin{enumerate}
+        \item[{\bf a.}] We claim all strings of the form $ab^i$ must be in distinct equivalence classes for all $i\ge 0$. This is because any two strings $ab^{i_1}$ and $ab^{i_2}$ can be distinguished by $c^{i_1}$, since $ab^{i_1}c^{i_1}\in F$, while $ab^{i_2}c^{i_1} \notin F$. Since there are infinitely many equivalence classes of the indistinguishability relation, we conclude by the Myhill-Nerode theorem, which is claimed in Problem 1.52, that no DFA can recognize $F$.
+        
+        \item[{\bf b.}] The pumping lemma says that for any string $s$ in the language, with length greater than the pumping length $p$, we can write $s = xyz$ with $|xy|\le p$, such that $xy^iz$ is also in the language for every $i\ge 0$.
+        
+        For the given language, we can take $p = 2$. Consider any string ${\tt a}^i{\tt b}^j{\tt c}^k$ in the language. If $i=1$ or $i>2$ ,we take $x=\varepsilon$ and $y={\tt a}$. If $i=1$, we must have $j=k$ and adding any number of a’s still preserves the membership in the language. For $i > 2$, all strings obtained by pumping $y$ as defined above, have two or more \texttt{a}’s and hence are always in the language.
+        
+        For $i = 2$, we can take $x = \varepsilon$ and $y = {\tt aa}$. Since the strings obtained by pumping in this case always have an even number of \texttt{a}’s, they are all in the language. Finally, for the case $i=0$, we take $x=\varepsilon$, and $y={\tt b}$ if $j>0$ and $y={\tt c}$ otherwise. Since strings of the form ${\tt b}^j{\tt c}^k$ are always in the language, we satisfy the conditions of the pumping lemma in this case as well.
+        
+        \item[{\bf c.}] Because the pumping lemma only says that if a language is regular, then it must satisfy the conditions of the lemma. However, this does not necessarily mean that no non-regular language can satisfy these conditions.
+    \end{enumerate}
+    
+    \item[{\bf 1.55}]
+    \begin{enumerate}
+        \item[{\bf f.}] The minimum pumping length is 1. The only member in the language is $\varepsilon$, which cannot be pumped. It cannot be 0 because the third condition of pumping lemma requires $|y|>0$.
+        \item[{\bf g.}]
+        
+        The minimum pumping length is 3. The string {\tt 00} is in the language but cannot be pumped, so 2 is not a pumping length for this language. If $s$ has length 3 or more, it must contains 1s. By dividing $s$ into $xyz$, where $x$ is everything in front of the first {\tt 1} and $y$ is the first {\tt 1} and $z$ is everything afterward, we satisfy the pumping lemma’s three conditions.
+        
+        \item[{\bf h.}]
+        
+        The minimum pumping length is 4. The string {\tt 100} is in the language but cannot be pumped, so 3 is not a pumping length for this language. If $s$ has length 4 or more, it must contains at least two 1s. By dividing $s$ into $xyz$, where $x$ is {\tt 10} and $y$ is the second {\tt 1} and $z$ is everything afterward, we satisfy the pumping lemma’s three conditions.
+        
+        \item[{\bf i.}]
+        
+        The minimum pumping length is 5. The sole string {\tt 1011} in the language cannot be pumped, so 4 is not a pumping length for this language. Thus the minimum pumping length is $4+1=5$.
+        
+        \item[{\bf j.}]
+        
+        The minimum pumping length is 1. The empty string $\varepsilon$ is in the language but cannot be pumped. Choose $s$ where $|s|>0$ from $\Sigma^\ast$ randomly. It can be divided into $xyz$, where $x$ is $\varepsilon$ and $y$ is the first symbol in $s$ and $z$ is everything afterward, we satisfy the pumping lemma's three conditions.
+    \end{enumerate}
+    
+    \item[{\bf Extra}] Prove that the language of arithmetic expressions, which consist of {\tt +},{\tt -},$\times$,$\div$,{\tt (},{\tt )} and positive integers composed of non-zero digits, are not regular.
+    
+    Let $L$ be the language. Assume that $L$ is regular. Let $p$ be the pumping length given by the pumping lemma. Choose $s$ to be the string {\tt (}$^p${\tt 1)}$^p$. Because $s$ is a member of $L$ and $s$ is longer than $p$, the pumping lemma guarantees that $s$ can be split into three pieces, $s=xyz$, satisfying the three conditions of the pumping lemma. Thus $y$ must consists of only {\tt (}s. Let $y=${\tt (}$^k$ where $0<k\le p$. Since $xyyz=${\tt (}$^{p+k}${\tt 1)}$^p\notin ADD$, a contradiction. Therefore $L$ is not regular.
+
+\end{enumerate}

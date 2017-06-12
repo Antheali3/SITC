@@ -1,0 +1,94 @@
+\documentclass[12pt]{report}
+
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % AMS Family
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumerate}
+\usepackage[Glenn]{fncychap}% for the chapter header style
+% \usepackage{fontspec}
+\usepackage{fullpage}
+\usepackage{mathtools}% for xRightarrow
+\usepackage{nicefrac}% for some inline fraction styles
+\usepackage{enumitem}% for enumerate and itemize
+\usepackage{tikz}
+\usepackage{libertine}
+\usepackage[T1]{fontenc}
+\usepackage{inconsolata}
+\usepackage{url}
+
+\usetikzlibrary{automata}
+\usetikzlibrary{trees}
+\usetikzlibrary{positioning}
+
+\setcounter{chapter}{-2}
+
+\newcommand{\dfa}{\textsf{DFA}}
+\newcommand{\nfa}{\textsf{NFA}}
+\newcommand{\cfg}{\textsf{CFG}}
+\newcommand{\cfl}{\textsf{CFL}}
+\newcommand{\pda}{\textsf{PDA}}
+\newcommand{\emptystring}{$\varepsilon$}
+\newcommand{\derivation}{\xRightarrow{\ast}}
+
+\begin{document}
+
+\title{Solutions to \emph{Introduction to the Theory of Computation, Third Edition}}
+\author{Cheng Luyu}
+\date{April 2017}
+\maketitle
+
+\tableofcontents
+
+\chapter{Before the Solutions}
+
+\chapter{Introduction}
+
+To be done.
+
+\part{Automata and Languages}
+
+\chapter{Regular Languages}
+
+\input{chapter1.tex}
+
+\chapter{Context-Free Language}
+
+\input{chapter2.tex}
+
+\part{Computability Theory}
+
+\chapter{The Church-Turing Thesis}
+
+To be done.
+
+\chapter{Decidability}
+
+To be done.
+
+\chapter{Reducibility}
+
+\input{chapter5.tex}
+
+\chapter{Advanced Topics in Computability Theory}
+
+To be done.
+
+\part{Complexity Theory}
+
+\chapter{Time Complexity}
+
+To be done.
+
+\chapter{Space Complexity}
+
+To be done.
+
+\chapter{Intractability}
+
+To be done.
+
+\chapter{Advanced Topics in Complexity Theory}
+
+To be done.
+
+\end{document}

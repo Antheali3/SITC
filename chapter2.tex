@@ -1,0 +1,545 @@
+\section*{Solutions to Exercises}
+
+\begin{enumerate}[font=\bfseries,label=2.\arabic*]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Recall the \cfg ~$G_4$ that we gave in Example 2.4. For convenience, let’s rename its variables with single letters as follows.
+
+\begin{align*}
+    E &\rightarrow E {\tt +} T \mid T \\
+    T &\rightarrow T \texttt{$\times$} F \mid F \\
+    F &\rightarrow (E) \mid {\tt a} \\
+\end{align*}
+
+Give parse trees and derivations for each string.
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.2.a %%%%%%%%%%%%%%%%%%%%%%%%%
+    \item {\tt a}
+    
+    Solution: The derivations is $$E\Rightarrow T\Rightarrow F\Rightarrow \texttt{a}$$ and the parse trees is given in Figure \ref{ex-2-1-a}.
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[
+      tlabel/.style={pos=0.4,right=-1pt,font=\footnotesize\color{red!70!black}},
+    ]   
+        \node{$E$}
+        child {
+            node {$T$}
+            child {
+                node {$F$}
+                child {
+                    node {\tt a}
+                }
+            }
+        };
+    \end{tikzpicture}
+    \caption{The parse tree of Exercise 2.1.a.}
+    \label{ex-2-1-a}
+    \end{figure}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.2.b %%%%%%%%%%%%%%%%%%%%%%%%%
+    \item {\tt a+a}
+    
+    Solution: The derivations (left-most) is $$E\Rightarrow E+T\Rightarrow T+T\Rightarrow F+T\Rightarrow F+F\Rightarrow {\tt a}+F\Rightarrow {\tt a}+{\tt a}$$ and the parse trees is given in Figure \ref{ex-2-1-b}.
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[
+      tlabel/.style={pos=0.4,right=-1pt,font=\footnotesize\color{red!70!black}},
+    ]   
+        \node{$E$}
+        child {
+            node {$E$}
+            child {
+                node {$T$}
+                child {
+                    node {$F$}
+                    child {
+                        node {\tt a}
+                    }
+                }
+            }
+        }
+        child { node {\tt +} }
+        child {
+            node {$T$}
+            child {
+                node {$F$}
+                child {
+                    node {\tt a}
+                }
+            }
+        };
+    \end{tikzpicture}
+    \caption{The parse tree of Exercise 2.1.b.}
+    \label{ex-2-1-b}
+    \end{figure}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.2.c %%%%%%%%%%%%%%%%%%%%%%%%%
+    \item {\tt a+a+a}
+    
+    Solution: The derivations (left-most) is 
+    \begin{align*}
+        E &\Rightarrow E+T\Rightarrow E+T+T\Rightarrow T+T+T\Rightarrow F+T+T\Rightarrow F+F+T\\
+        &\Rightarrow F+F+F\Rightarrow {\tt a}+F+F\Rightarrow {\tt a}+{\tt a}+F\Rightarrow {\tt a}+{\tt a}+{\tt a}
+    \end{align*}    
+    and the parse trees is given in Figure \ref{ex-2-1-c}.
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[
+      tlabel/.style={pos=0.4,right=-1pt,font=\footnotesize\color{red!70!black}},
+    ]   
+        \node{$E$}
+        child {
+            node {$E$}
+            child {
+                node {$E$}
+                child {
+                    node {$T$}
+                    child {
+                        node {$F$}
+                        child {
+                            node {\tt a}
+                        }
+                    }
+                }
+            }
+            child { node {\tt +} }
+            child {
+                node {$T$}
+                child {
+                    node {$F$}
+                    child {
+                        node {\tt a}
+                    }
+                }
+            }
+        }
+        child { node {\tt +} }
+        child {
+            node {$T$}
+            child {
+                node {$F$}
+                child {
+                    node {\tt a}
+                }
+            }
+        };
+    \end{tikzpicture}
+    \caption{The parse tree of Exercise 2.1.c.}
+    \label{ex-2-1-c}
+    \end{figure}
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.2.d %%%%%%%%%%%%%%%%%%%%%%%%%
+    \item {\tt ((a))}
+    
+    Solution: The derivations (left-most) is $$E\Rightarrow T\Rightarrow F\Rightarrow (E)\Rightarrow (T)\Rightarrow (F)\Rightarrow ((E))\Rightarrow ((T))\Rightarrow ((F))\Rightarrow (({\tt a}))$$ and the parse trees is given in Figure \ref{ex-2-1-d}.
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[
+      tlabel/.style={pos=0.4,right=-1pt,font=\footnotesize\color{red!70!black}},
+    ]   
+        \node{$E$}
+        child {
+            node {\tt (}
+        }
+        child {
+            node {$E$}
+            child {
+                node {\tt (}
+            }
+            child {
+                node{$E$}
+                child {
+                    node {$T$}
+                    child {
+                        node {$F$}
+                        child {
+                            node {\tt a}
+                        }
+                    }
+                }
+            }
+            child {
+                node {\tt )}
+            }
+        }
+        child {
+            node {\tt )}
+        };
+    \end{tikzpicture}
+    \caption{The parse tree of Exercise 2.1.d.}
+    \label{ex-2-1-d}
+    \end{figure}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item Use the languages $A = \{{\tt a}^m {\tt b}^n {\tt c}^n | m, n\ge 0\}$ and $B = \{{\tt a}^n {\tt b}^n {\tt c}^m | m, n\ge 0\}$ together with Example 2.36 to show that the class of context-free languages is not closed under intersection.
+
+    \item Use part (a) and DeMorgan’s law (Theorem 0.20) to show that the class of context-free languages is not closed under complementation.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item
+
+Answer each part for the following context-free grammar $G$. 
+\begin{align*}
+R &\rightarrow XRX \mid S\\
+S &\rightarrow {\tt a} T {\tt b} \mid {\tt b} T {\tt a}\\
+T &\rightarrow XTX \mid X \mid \varepsilon\\
+X &\rightarrow {\tt a} \mid {\tt b}
+\end{align*}
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item What are the variables of $G$?
+    
+    Answer: $V=\{R,S,T,X\}$
+    
+    \item What are the terminals of $G$? 
+    
+    Answer: $\Sigma=\{{\tt a},{\tt b}\}$
+    
+    \item Which is the start variable of $G$? 
+    
+    Answer: The start variable is $R$.
+    
+    \item Give three strings in $L(G)$. 
+    
+    Answer: {\tt ab}, {\tt ba} and {\tt aabb}.
+    
+    \item Give three strings not in $L(G)$.
+    
+    Answer: {\tt aa}, {\tt aaa} and {\tt aaaa}.
+    
+    \item True or False: $T\Rightarrow {\tt aba}$.
+    
+    Answer: False.
+    
+    \item True or False: $T\derivation {\tt aba}$.
+    
+    Answer: True. In the following derivations: $$T\Rightarrow XTX\Rightarrow {\tt a}TX\Rightarrow {\tt a}XX\Rightarrow {\tt a}{\tt b}X\Rightarrow {\tt a}{\tt b}{\tt a}$$
+    
+    \item True or False: $T\Rightarrow T$.
+    
+    Answer: False.
+    
+    \item True or False: $T\derivation T $.
+    
+    Answer: False.
+    
+    \item True or False: $XXX\derivation {\tt aba}$.
+    
+    Answer: True. In the following derivations: $$XXX\Rightarrow {\tt a}XX\Rightarrow {\tt a}{\tt b}X\Rightarrow {\tt a}{\tt b}{\tt a}$$
+    
+    \item True or False: $X\derivation {\tt aba}$.
+    
+    Answer: False.
+    
+    \item True or False: $T\derivation XX$.
+    
+    Answer: True. In the following derivations: $$T\Rightarrow XTX\Rightarrow X\varepsilon X=XX$$
+    \item True or False: $T\derivation XXX$.
+    
+    Answer: True. In the following derivations: $$T\Rightarrow XTX\Rightarrow XXX$$
+    \item True or False: $S\derivation \varepsilon$.
+    
+    Answer: False.
+    \item Give a description in English of $L(G)$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give context-free grammars that generate the following languages. In all parts, the alphabet $\Sigma$ is $\{0,1\}$.
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item $\{w| w\text{ contains at least three \texttt{1}s}\}$
+    \begin{align*}
+        R &\rightarrow SSS \\
+        S &\rightarrow T{\tt 1}T \\
+        T &\rightarrow {\tt 0}T \mid {\tt 1}T \mid \varepsilon
+    \end{align*}
+    
+    \item $\{w| w\text{ starts and ends with the same symbol}\}$
+    \begin{align*}
+        R &\rightarrow {\tt 0}S{\tt 0} \mid {\tt 1}S{\tt 1} \\
+        S &\rightarrow {\tt 0}S \mid {\tt 1}S \mid \varepsilon
+    \end{align*}
+    
+    \item $\{w| \text{the length of $w$ is odd}\}$
+    \begin{align*}
+        R &\rightarrow {\tt 1}S \mid {\tt 0}S \\
+        S &\rightarrow {\tt 00} \mid {\tt 01} \mid {\tt 10} \mid {\tt 11} \mid \varepsilon
+    \end{align*}
+    
+    \item $\{w| \text{the length of $w$ is odd and its middle symbol is a 0}\}$
+    \begin{align*}
+        R &\rightarrow S{\tt 0}S \\
+        S &\rightarrow {\tt 00} \mid {\tt 01} \mid {\tt 10} \mid {\tt 11} \mid \varepsilon
+    \end{align*}
+    
+    
+    \item $\{w| w = w^\mathcal R, \text{that is,$w$ is a palindrome}\}$
+    \begin{align*}
+        R &\rightarrow {\tt 0}R{\tt 0} \mid {\tt 1}R{\tt 1} \mid \varepsilon
+    \end{align*}
+    
+    \item The empty set
+    \begin{align*}
+        R &\rightarrow R
+    \end{align*}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.5 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give informal descriptions and state diagrams of pushdown automata for the languages in Exercise 2.4.
+
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item $\{w| w\text{ contains at least three \texttt{1}s}\}$
+    
+    \item $\{w| w\text{ starts and ends with the same symbol}\}$
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[->,>=stealth,semithick,shorten >=1pt,node distance=4cm,on grid,auto] 
+        \node[state,initial] (q0) {$q_0$};
+        \node[state] (q1) [above right=of q0] {$q_1$};
+        \node[state] (q2) [below right=of q0] {$q_2$};
+        \node[state,accepting] (q3) [below right=of q1] {$q_3$};
+        \path   (q0) edge [bend left] node {$\texttt{1},\varepsilon\rightarrow\texttt{1}$} (q1)
+                     edge [bend right] node [below left] {$\texttt{0},\varepsilon\rightarrow\texttt{0}$} (q2)
+                (q1) edge [bend left] node {$\texttt{1},\texttt{1}\rightarrow\varepsilon$} (q3)
+                     edge [loop above] node[align=center] {$\texttt{0},\varepsilon\rightarrow\varepsilon$\\$ \texttt{1},\varepsilon\rightarrow\varepsilon$} (q1)
+                (q2) edge [bend right] node [below right] {$\texttt{0},\texttt{0}\rightarrow\varepsilon$} (q3)
+                     edge [loop below] node[align=center] {$\texttt{0},\varepsilon\rightarrow\varepsilon$\\$\texttt{1},\varepsilon\rightarrow\varepsilon$} (q2);
+    \end{tikzpicture}
+    \caption{A possible solution to exercise 2.5}
+    \end{figure}
+
+    \item $\{w| \text{the length of $w$ is odd}\}$
+    
+    \item $\{w| \text{the length of $w$ is odd and its middle symbol is a 0}\}$
+    
+    \item $\{w| w = w^\mathcal R, \text{that is,$w$ is a palindrome}\}$
+    
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[->,>=stealth,semithick,shorten >=1pt,node distance=3cm,on grid,auto] 
+        \node[state,initial] (q0) {$q_0$};
+        \node[state] (q1) [right=of q0] {$q_1$};
+        \node[state] (q2) [right=of q1] {$q_2$};
+        \node[state,accepting] (q3) [right=of q2] {$q_2$};
+        \path   (q0) edge node {$\varepsilon,\varepsilon\rightarrow\texttt{\$}$} (q1)
+                (q1) edge node[align=center] {$\texttt{0},\texttt{1}\rightarrow\varepsilon$\\
+                                $\texttt{0},\varepsilon\rightarrow\texttt{0}$\\
+                                $\texttt{1},\texttt{0}\rightarrow\varepsilon$\\
+                                $\texttt{1},\varepsilon\rightarrow\texttt{1}$} (q2)
+                (q2) edge node {$\varepsilon,\texttt{\$}\rightarrow\varepsilon$} (q3);
+    \end{tikzpicture}
+    \caption{A possible solution to exercise 2.5}
+    \end{figure}
+    
+    \item The empty set
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.6 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give context-free grammars generating the following languages.
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item The set of strings over the alphabet $\{{\tt a},{\tt b}\}$ with more {\tt a}’s than {\tt b}’s
+    
+    \emph{Answer}
+    \begin{align*}
+        A\rightarrow B
+    \end{align*}
+    
+    \item The complement of the language $\{{\tt a}^n {\tt b}^n | n \ge 0\}$
+    
+    \emph{Answer}:
+    \begin{equation*}
+    \begin{split}
+        R &\rightarrow S \mid V \mid W \\
+        S &\rightarrow {\tt a}S{\tt a} \mid {\tt b}S{\tt b} \mid \varepsilon \\
+        T &\rightarrow {\tt a}T \mid \varepsilon \\
+        U &\rightarrow {\tt b}T \mid \varepsilon \\
+        V &\rightarrow {\tt b}X \\
+        W &\rightarrow {\tt a}T{\tt b}U{\tt a}X \\
+        X &\rightarrow {\tt a}X \mid {\tt b}X \mid \varepsilon
+    \end{split}
+    \end{equation*}
+    
+    \item $\left\{w{\tt \#}x| w^\mathcal R \text{ is a substring of $x$ for } w, x\in \{0,1\}^\ast \right\}$
+    
+    \item $\left\{x_1{\tt \#}x_2{\tt \#}\cdots{\tt \#}x_k | k\ge 1, \text{ each } x_i \in \{a, b\}^\ast , \text{and for some $i$ and $j$}, x_i = x_j^\mathcal R \right\}$
+    
+    \emph{Answer}:
+    \begin{equation*}
+    \begin{split}
+        R &\rightarrow SR' \\
+        R'&\rightarrow {\tt \#}SR' \mid \varepsilon \\
+        S &\rightarrow T \mid U \\
+        T &\rightarrow {\tt a}T{\tt a} \mid {\tt b}T{\tt b} \mid {\tt \#}R{\tt \#} \mid \varepsilon \\
+        U &\rightarrow {\tt a}U \mid {\tt b}U \mid \varepsilon
+    \end{split}
+    \end{equation*}
+    
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.7 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give informal English descriptions of \pda s for the languages in Exercise 2.6.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.8 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Show that the string {\tt the girl touches the boy with the flower} has two different leftmost derivations in grammar $G_2$ on page 103. Describe in English the two different meanings of this sentence.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.9 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give a context-free grammar that generates the language
+$$A = \{{\tt a}^i {\tt b}^j {\tt c}^k | i = j \text{ or } j = k \text{ where } i, j, k\ge 0\}. $$
+Is your grammar ambiguous? Why or why not?
+
+\emph{Answer}:
+\begin{align*}
+    R &\rightarrow ST \mid UV \\
+    S &\rightarrow {\tt a}S{\tt b} \mid \varepsilon \\
+    T &\rightarrow {\tt c}T \mid \varepsilon \\
+    U &\rightarrow {\tt a}U \mid \varepsilon \\
+    V &\rightarrow {\tt b}V{\tt c} \mid \varepsilon
+\end{align*}
+
+The grammar is ambiguous. Take string {\tt aabbcc} for an example, there are two derivations:
+\begin{align*}
+    R &\Rightarrow ST\Rightarrow {\tt a}S{\tt b}T\Rightarrow {\tt aa}S{\tt bb}T
+       \Rightarrow {\tt aa}\varepsilon{\tt bb}T \Rightarrow {\tt aa}\varepsilon{\tt bbc}T
+       \Rightarrow {\tt aa}\varepsilon{\tt bbcc}T \Rightarrow {\tt aa}\varepsilon{\tt bbcc}\varepsilon\\
+    R &\Rightarrow UV\Rightarrow {\tt a}UV\Rightarrow {\tt aa}UV
+       \Rightarrow {\tt aa}\varepsilon V\Rightarrow {\tt aa}\varepsilon {\tt b}V{\tt c}
+       \Rightarrow {\tt aa}\varepsilon {\tt bb}V{\tt cc}
+       \Rightarrow {\tt aa}\varepsilon {\tt bb}\varepsilon {\tt cc}
+\end{align*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.10 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give an informal description of a pushdown automaton that recognizes the language $A$ in Exercise 2.9.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.11 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Convert the \cfg~$G_4$ given in Exercise 2.1 to an equivalent \pda, using the procedure given in Theorem 2.20.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.12 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Convert the \cfg~$G$ given in Exercise 2.3 to an equivalent \pda, using the procedure given in Theorem 2.20.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.13 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Let $G = (V, \Sigma, R, S)$ be the following grammar. $V = \{S, T, U\}$; $\Sigma = \{0, {\tt \#}\}$; and $R$ is the set of rules:
+
+\begin{align*}
+S &\rightarrow TT \mid U\\
+T &\rightarrow {\tt 0}T \mid T {\tt 0} \mid {\tt \#}\\
+U &\rightarrow {\tt 0}U{\tt 00} \mid {\tt \#}
+\end{align*}
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item Describe $L(G)$ in English.
+    \item Prove that $L(G)$ is not regular.
+    
+    \begin{proof}
+    
+    Let's 
+    
+    \end{proof}
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.14 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Convert the following \cfg~into an equivalent \cfg~in Chomsky normal form, using the procedure given in Theorem 2.9.
+
+\begin{align*}
+A &\rightarrow BAB \mid B \mid \varepsilon\\
+B &\rightarrow {\tt 00} \mid \varepsilon
+\end{align*}
+
+\emph{Solution}: At the first stage, we add a new start variable $S$ and the rule $S\rightarrow A$.
+\begin{equation*}
+\begin{split}
+    \boldsymbol{S} &\boldsymbol{\rightarrow A}\\
+    A &\rightarrow BAB \mid B \mid \varepsilon\\
+    B &\rightarrow {\tt 00} \mid \varepsilon
+\end{split}
+\end{equation*}
+
+At the second stage. First we need to remove a $\varepsilon$-rule of $B$, and add a new rule $A\rightarrow A$ and $A\rightarrow\varepsilon$. Then remove the $\varepsilon$-rules of $A$, i.e. $A\rightarrow A$ and $A\rightarrow\varepsilon$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.15 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Give a counterexample to show that the following construction fails to prove that the class of context-free languages is closed under star. Let A be a \cfl~that is generated by the \cfg~$G = (V, \Sigma, R, S)$. Add the new rule $S\rightarrow SS$ and call the resulting grammar $G_0$. This grammar is supposed to generate $A^\ast$ .
+
+\emph{Solution}: Because $\varepsilon\in A^\ast$, but $\varepsilon$ cannot generated by $S$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.16 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Show that the class of context-free languages is closed under the regular operations, union, concatenation, and star.
+
+\emph{Answer}:
+
+Let $G_1=(V_1,\Sigma_1,R_1,S_1)$ and $G_1=(V_2,\Sigma_2,R_2,S_2)$. Suppose $V_1\cap V_2=\varnothing$. The union of $G_1$ and $G_2$ is
+$$G_\cup=\left\{V_1\cup V_2\cup\{R\},\Sigma_1\cup\Sigma_2,R_1\cup R_2\cup\{R\rightarrow S_1\mid S_2\},R\right\}.$$
+The concatenation of $G_1$ and $G_2$ is
+$$G_\bullet=\left\{V_1\cup V_2\cup\{R\},\Sigma_1\cup\Sigma_2,R_1\cup R_2\cup\{R\rightarrow S_1 S_2\},R\right\}.$$
+The star of $G_1$ is
+$$G_\star=\left\{V_1\cup \{R\},\Sigma_1,R_1\cup \{R\rightarrow S_1R\mid\varepsilon\},R\right\}.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exercise 2.17 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Use the results of Exercise 2.16 to give another proof that every regular language is context free, by showing how to convert a regular expression directly to an equivalent context-free grammar.
+
+\emph{Answer}:
+
+Let $\mathcal L$ be any regular language. There exists a regular expression, say $R$, such that $L(R)=\mathcal L$.
+
+\begin{itemize}
+    \item If $R=\varnothing$, the equivalent context-free grammar is $(\{S\},\varnothing,\{S\rightarrow S\},S)$.
+    
+    \item If $R=\alpha$, where $\alpha$ is a symbol, the equivalent context-free grammar is $(\{S\},\{\alpha\},\{S\rightarrow \alpha\},S)$.
+    
+    \item If $R=R_1R_2$, that is, a concatenation of regular expression $R_1$ and regular expression $R_2$. The equivalent context-free grammar is $$\left\{V_1\cup V_2\cup\{R\},\Sigma_1\cup\Sigma_2,R_1\cup R_2\cup\{R\rightarrow S_1 S_2\},R\right\}.$$
+    
+    \item If $R=R_1\cup R_2$, that is, a concatenation of regular expression $R_1$ and regular expression $R_2$. The equivalent context-free grammar is $$G_\cup=\left\{V_1\cup V_2\cup\{R\},\Sigma_1\cup\Sigma_2,R_1\cup R_2\cup\{R\rightarrow S_1\mid S_2\},R\right\}.$$
+    
+    \item If $R=R_1^\ast$, that is, a star of regular expression $R_1$. The equivalent context-free grammar is $$\left\{V_1\cup \{R\},\Sigma_1,R_1\cup \{R\rightarrow S_1R\mid\varepsilon\},R\right\}.$$
+\end{itemize}
+
+\end{enumerate}
+
+\section*{Solutions to Problems}
+
+\begin{enumerate}[start=18,font=\bfseries,label=2.\arabic*]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 2.18 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item
+
+\begin{enumerate}[font=\bfseries,label=\alph*.]
+    \item Let $C$ be a context-free language and $R$ be a regular language. Prove that the language $C\cap R$ is context free.
+    \item Let $A = \{w|w\in \{ \texttt{a},\texttt{b},\texttt{c} \}^\ast \}$ and $w$ contains equal numbers of \texttt{a}’s, \texttt{b}’s, and \texttt{c}’s. Use part (a) to show that $A$ is not a \cfl.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 2.19 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{enumerate}
+

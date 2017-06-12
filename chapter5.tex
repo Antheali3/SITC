@@ -1,0 +1,60 @@
+\section*{Solutions to Exercises}
+
+\begin{enumerate}[font=\bfseries,label=5.\arabic*]
+
+    \item Show that $\textit{EQ}_\textsf{CFG}$ is undecidable.
+    
+    \item Show that $\textit{EQ}_\textsf{CFG}$ is co-Turing-recognizable.
+    
+    \item Find a match in the following instance of the Post Correspondence Problem.
+    \[ \left\{
+        \left[ \frac{\texttt{ab}}{\texttt{abab}} \right],
+        \left[ \frac{\texttt{b}}{\texttt{a}} \right],
+        \left[ \frac{\texttt{aba}}{\texttt{b}} \right],
+        \left[ \frac{\texttt{aa}}{\texttt{a}} \right]
+    \right\} \]
+    
+    \item If $A \le_\mathrm m B$ and $B$ is a regular language, does that imply that $A$ is a regular language? Why or why not?
+    
+    \textsc{\textbf{Possible Answer}} No. Take a counterexample, suppose $f(xy)=x \; (|x|=|y|)$, $B=\texttt{0}^\ast$ and $A=\texttt{0}^n\texttt{1}^n \; (n=0,1,\cdots)$. Obviously $B$ is a regular language and $A \le_\mathrm m B$, but $A$ is a non-regular language.
+
+\end{enumerate}
+
+\section*{Solution to Problems}
+
+\begin{enumerate}[start=8,font=\bfseries,label=5.\arabic*]
+
+    \item Let $T = \{ \langle M \rangle | \text{$M$ is a \textsf{TM} that accepts $w^\mathcal R$ whenever it accepts $w$} \}$. Show that $T$ is undecidable.
+    
+    \textsc{\textbf{Possible Answer 1}}
+    
+    Let $f:\Sigma^\ast\rightarrow\Sigma^\ast$ be the identity function, i.e. $f(w)=w$. Obviously $f$ is a computable function. We can conclude that $E_\textsf{TM} \le_\mathrm m T$. Since $E_\textsf{TM}$ is undecidable, $T$ is decidable.
+    
+    \textsc{\textbf{Possible Answer 2}}
+    
+    Assume $T$ is decidable and let decider $R$ decide $T$. Reduce from $A_\textsf{TM}$ by constructing a \textsf{TM} $S$ as follows:
+    
+    $S = \text{``}$On input $\langle M, w \rangle$
+    \begin{enumerate}[label=\arabic*.]
+        \item construct a \textsf{TM} $Q$ as follows:
+        
+        $Q = \text{`}$On input $x$:
+        \begin{enumerate}[label=\arabic*.]
+            \item If $x$ does not have the form $\texttt{0}^n\texttt{1}^n$ or $\texttt{1}^n\texttt{0}^n$ \emph{reject}.
+            \item If $x$ has the form $\texttt{0}^n\texttt{1}^n$, then \emph{accept}.
+            \item Otherwise (if $x$ has the form of $\texttt{1}^n\texttt{0}^n$), run $M$ on $w$. If $M$ accepts $w$, \emph{accept}, otherwise \emph{reject}.'
+        \end{enumerate}
+        \item Run $R$ on $\langle Q \rangle$.
+        \item \emph{Accept} if $R$ accepts, \emph{reject} if $R$ rejects.''
+    \end{enumerate}
+    Because $S$ decides $A_\textsf{TM}$, which is known to be undecidable, we then know that $T$ is not decidable. 
+    
+    \item[5.22] Show that $A$ is Turing-recognizable iff $A \le_\mathrm m A_\textsf{TM}$.
+    
+    \textsc{\textbf{Possible Answer}}\footnote{from \url{http://www.cs.nthu.edu.tw/~wkhon/toc07-assignments/assign4ans.pdf}}
+    
+    $(\Rightarrow)$ If $A \le_\mathrm m A_\textsf{TM}$, then $A$ is Turing-recognizable because $A_\textsf{TM}$ is Turing recognizable.
+    
+    $(\Leftarrow)$ If $A$ is Turing-recognizable, then there exists some \textsf{TM} $R$ that recognizes $A$. That is, $R$ would receive an input $w$ and accept if $w$ is in $A$ (otherwise $R$ does not accept). To show that $A \le_\mathrm m A_\textsf{TM}$, we design a \textsf{TM} that does the following: On input $w$, writes $\langle R,w\rangle$ on the tape and halts. It is easy to check that $\langle R,w\rangle$ is in $A_\textsf{TM}$ if and only if $w$ is in $A$. Thus, we get a mapping reduction of $A$ to $A_\textsf{TM}$.
+    
+\end{enumerate}
